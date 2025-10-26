@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dev-C++ Community</title>
+<link rel="icon" type="image/png" href="Website-Guide.png">
+<style>
+  body { font-family: Arial, sans-serif; background:#f4f4f4; margin:0; }
+  header { background:#2c3e50; color:white; text-align:center; padding:18px 0; }
+  nav { background:#34495e; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; padding:12px; gap:10px; }
+  nav a { color:white; text-decoration:none; font-size:18px; padding:12px 18px; border-radius:6px; background:#2c3e50; transition:background .2s; }
+  nav a:hover { background:#1abc9c; }
+  nav input[type="text"] {
+    flex:1;
+    max-width:420px;
+    padding:12px;
+    border:none;
+    border-radius:6px;
+    font-size:16px;
+  }
+  main { padding:20px; max-width:1200px; margin:auto; }
+  form { background:white; padding:18px; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.08); }
+  form input, form textarea, form button { width:100%; padding:10px; margin-top:10px; border:1px solid #ccc; border-radius:6px; font-size:16px; box-sizing:border-box; }
+  form button { background:#2980b9; color:white; cursor:pointer; transition:0.2s; }
+  form button:hover { background:#5fb2e8; color:#d5e8f5; }
+  .post { background:white; padding:15px; border-radius:8px; margin-top:15px; box-shadow:0 0 5px rgba(0,0,0,0.06); position:relative; }
+  .post .meta { color:#666; font-size:13px; margin-bottom:8px; }
+  .btn-small { border:1px; border-radius:6px; padding:6px 10px; cursor:pointer; beckground:black; color:black; font-size:13px; }
+  .delete-btn { background:#e74c3c; position:absolute; top:12px; right:12px; }
+  .edit-btn { background:#2980b9; position:absolute; top:12px; right:90px; }
+  .like-btn { background:#27ae60; margin-right:8px; }
+  .dislike-btn { background:#c0392b; margin-right:8px; }
+  .delete-btn:hover { background:#f26657; }
+  .edit-btn:hover { background:#5fb2e8; }
+  .like-btn:hover { background:#36ba6e; }
+  .dislike-btn:hover { background:#d14c3f; }
+  .reply { background:white; padding:8px; border-radius:6px; margin-top:8px; }
+  #filePreview { margin-top:8px; font-size:0.9em; color:#555; }
+  #dropArea { border:2px dashed #ccc; border-radius:6px; padding:14px; text-align:center; color:#666; margin-top:10px; transition:0.15s; }
+  #dropArea.dragover { background:#eaf5ff; border-color:#3498db; color:#3498db; }
+  footer { text-align:center; padding:15px; color:#777; margin-top:20px; }
+  /* mobile tweaks */
+  @media(max-width:600px){ nav input[type="text"]{ max-width:180px; } .edit-btn, .delete-btn{ right:10px; top:8px; padding:5px 8px; font-size:12px; } }
+
+  /* search results */
+  #searchResults button {
+    display:block; width:100%; text-align:left;
+    background:white; color:black; border:none;
+    border-radius:8px; margin-top:8px; padding:12px;
+    box-shadow:0 0 5px rgba(0,0,0,0.08); cursor:pointer;
+    transition:background .2s;
+  }
+  #searchResults button:hover { background:#eef7ff; }
+  #searchResults .title { font-weight:bold; color:#2980b9; font-size:17px; }
+  #searchResults .content { color:#555; margin-top:4px; font-size:14px; }
+    /* Hide default scrollbar */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+</style>
+</head>
+<body>
+<header>
+  <h1>Dev-C++ Community</h1>
+  <p>Share code, ask questions, and collaborate — files supported.</p>
+</header>
+
+<nav>
+  <a href="Main_DEV-C++.html">🏠 Home</a>
+  <a href="Ai_Help.html">🤖 AI Help</a>
+  <a href="contact.html">📩 Contact</a>
+</nav>
+
+<main>
+  <h2>Community Forum</h2>
+
+  <form id="uploadForm">
+    <input type="text" id="username" placeholder="Your Name" required />
+    <input type="text" id="postTitle" placeholder="Title" required />
+    <textarea id="postContent" placeholder="Write your question or feedback..." rows="5" required></textarea>
+
+    <label for="file_upload">Attach Files (optional)</label>
+    <input type="file" id="file_upload" multiple />
+    <div id="dropArea">💾 Drag & Drop files here</div>
+    <div id="filePreview"></div>
+
+    <button type="submit">Submit</button>
+  </form>
+  <!-- 🔍 SEARCH BAR + RESULTS -->
+  <input id="searchBox" placeholder="Search posts..." style="width:98%;padding:10px;font-size:16px;margin-bottom:10px;">
+  <div id="searchResults"></div>
+  <div id="communityPosts" style="margin-top:18px;"></div>
+</main>
+
+<footer>
+  <p>Ⓖ 2025 Dev-C++ Community</p>
+</footer>
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+
+
+
+<script>
+// ---------- CONFIG ----------
+const firebaseConfig = {
+  apiKey: "AIzaSyCIzPe9TyGDx3XAlskrok_7lrCe8Md9jWs",
+  authDomain: "dev-community-91d29.firebaseapp.com",
+  databaseURL: "https://dev-community-91d29-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "dev-community-91d29",
+  storageBucket: "dev-community-91d29.appspot.com",
+  messagingSenderId: "980274190323",
+  appId: "1:980274190323:web:148f0558cb740ede406486"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+const storage = firebase.storage();
+
+// Unique local user ID (simple owner identity)
+let userId = localStorage.getItem("userId");
+if (!userId) { userId = "u" + Math.random().toString(36).substr(2,9); localStorage.setItem("userId", userId); }
+
+// ---------- DOM ----------
+const form = document.getElementById("uploadForm");
+const communityPosts = document.getElementById("communityPosts");
+const fileInput = document.getElementById("file_upload");
+const filePreview = document.getElementById("filePreview");
+const dropArea = document.getElementById("dropArea");
+const searchBar = document.getElementById("searchBar");
+let droppedFiles = [];
+
+// ---------- Drag & Drop + preview ----------
+dropArea.addEventListener("dragover", e => { e.preventDefault(); dropArea.classList.add("dragover"); });
+dropArea.addEventListener("dragleave", e => { e.preventDefault(); dropArea.classList.remove("dragover"); });
+dropArea.addEventListener("drop", e => {
+  e.preventDefault();
+  dropArea.classList.remove("dragover");
+  droppedFiles = Array.from(e.dataTransfer.files);
+  updateFilePreview();
+});
+fileInput.addEventListener("change", () => { droppedFiles = Array.from(fileInput.files); updateFilePreview(); });
+function updateFilePreview(){ filePreview.innerHTML = droppedFiles.length ? `<b>Selected:</b> ${droppedFiles.map(f=>f.name).join(", ")}` : ""; }
+
+// ---------- Listen posts (realtime) ----------
+db.ref("posts").on("value", snapshot => {
+  const posts = snapshot.val() || {};
+  // convert to array sorted by timestamp desc
+  const arr = Object.values(posts).sort((a,b)=> (b.timestamp||0) - (a.timestamp||0));
+  displayPosts(arr);
+});
+
+// ---------- Create post (upload files first) ----------
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  const username = document.getElementById("username").value.trim();
+  const title = document.getElementById("postTitle").value.trim();
+  const content = document.getElementById("postContent").value.trim();
+  if (!username || !title || !content) return alert("Please fill all fields!");
+
+  const postId = Date.now().toString();
+  const post = { id: postId, username, title, content, userId, timestamp: Date.now(), files: [], likes: {}, dislikes: {}, replies: {} };
+
+  // upload files (if any)
+  for (let file of droppedFiles) {
+    const fileRef = storage.ref(`uploads/${postId}/${file.name}`);
+    await fileRef.put(file);
+    const url = await fileRef.getDownloadURL();
+    post.files.push({ name: file.name, url });
+  }
+
+  await db.ref("posts/" + postId).set(post);
+  form.reset();
+  droppedFiles = [];
+  updateFilePreview();
+});
+
+// ---------- Render posts ----------
+function displayPosts(postsArray){
+  communityPosts.innerHTML = "";
+  postsArray.forEach(p => {
+    const div = document.createElement("div");
+    div.className = "post";
+    div.id = "post-" + p.id;
+
+    const owner = p.userId === userId;
+    const likeCount = p.likes ? Object.keys(p.likes).length : 0;
+    const dislikeCount = p.dislikes ? Object.keys(p.dislikes).length : 0;
+
+    div.innerHTML = `
+      ${owner ? `<button class="btn-small edit-btn" onclick="editPost('${p.id}')">Edit</button>
+                 <button class="btn-small delete-btn" onclick="deletePost('${p.id}')">Delete</button>` : ""}
+      <h3>${escapeHtml(p.title)} <span class="meta">by ${escapeHtml(p.username)}</span></h3>
+      <div class="meta">${new Date(p.timestamp).toLocaleString()}</div>
+      <p id="content-${p.id}">${escapeHtml(p.content).replace(/\n/g,'<br>')}</p>
+      ${p.files && p.files.length ? `<div><strong>Attachments:</strong><ul>${p.files.map(f=>`<li><a href="${f.url}" target="_blank" rel="noopener noreferrer">${escapeHtml(f.name)}</a></li>`).join("")}</ul></div>` : ""}
+      <div style="margin-top:10px;">
+        <button class="btn-small like-btn" onclick="toggleLike('${p.id}')">👍 ${likeCount}</button>
+        <button class="btn-small dislike-btn" onclick="toggleDislike('${p.id}')">👎 ${dislikeCount}</button>
+        <button class="btn-small" onclick="toggleReplyBox('${p.id}')">💬 Comment</button>
+        <button class="btn-small" onclick="showReplies('${p.id}')">Show/Hide 💬</button>
+      </div>
+
+      <div id="replyBox-${p.id}" style="display:none;margin-top:10px;">
+        <input type="text" id="replyUser-${p.id}" placeholder="Your name" style="width:100%;margin-bottom:6px;" />
+        <textarea id="replyText-${p.id}" rows="2" placeholder="Write a reply..." style="width:100%;"></textarea>
+        <button class="btn-small" onclick="sendReply('${p.id}')">Send Reply</button>
+      </div>
+
+      <div id="replies-${p.id}" style="margin-top:10px;padding-left:12px;border-left:2px solid #eee; display:none;"></div>
+    `;
+    communityPosts.appendChild(div);
+  });
+  runClientFilter(); // re-apply search filter if any
+}
+
+// ---------- Replies handling ----------
+function toggleReplyBox(postId){
+  const box = document.getElementById("replyBox-" + postId);
+  box.style.display = box.style.display === "none" ? "block" : "none";
+}
+async function sendReply(postId){
+  const name = document.getElementById("replyUser-"+postId).value.trim();
+  const text = document.getElementById("replyText-"+postId).value.trim();
+  if (!name || !text) return alert("Please enter name and comment.");
+
+  const replyId = Date.now().toString();
+  const reply = { id: replyId, username: name, text, userId, timestamp: Date.now() };
+  await db.ref(`posts/${postId}/replies/${replyId}`).set(reply);
+
+  document.getElementById("replyUser-"+postId).value = "";
+  document.getElementById("replyText-"+postId).value = "";
+  showReplies(postId);
+}
+function showReplies(postId){
+  const container = document.getElementById("replies-"+postId);
+  container.style.display = container.style.display === "none" ? "block" : "none";
+
+  // Fetch replies once (live updates come from main listener anyway)
+  db.ref(`posts/${postId}/replies`).once("value").then(snap=>{
+    const replies = snap.val();
+    container.innerHTML = "";
+    if (!replies) { container.innerHTML = "<p style='color:#777;'>No comments yet.</p>"; return; }
+    Object.entries(replies).sort((a,b)=> (b[1].timestamp||0)-(a[1].timestamp||0)).forEach(([id,r])=>{
+      const el = document.createElement("div");
+      el.className = "reply";
+      const owner = r.userId === userId;
+      el.id = `reply-${id}`;
+      el.innerHTML = `
+        <b>${escapeHtml(r.username)}</b> <span class="meta" style="color:#666;font-size:12px;">• ${new Date(r.timestamp).toLocaleString()}</span>
+        <div id="replyText-${id}" style="margin-top:6px;">${escapeHtml(r.text).replace(/\n/g,'<br>')}</div>
+        ${owner ? `<div style="margin-top:6px;">
+          <button class="btn-small" onclick="editReply('${postId}','${id}')">✏️ Edit</button>
+          <button class="btn-small" onclick="deleteReply('${postId}','${id}')">🗑️ Delete</button>
+        </div>` : ""}
+      `;
+      container.appendChild(el);
+    });
+  });
+}
+function editReply(postId, replyId){
+  db.ref(`posts/${postId}/replies/${replyId}`).once("value").then(snap=>{
+    const r = snap.val();
+    if (!r || r.userId !== userId) return alert("You can only edit your own comment.");
+    const newText = prompt("Edit your comment:", r.text);
+    if (newText !== null) db.ref(`posts/${postId}/replies/${replyId}/text`).set(newText);
+  });
+}
+function deleteReply(postId, replyId){
+  db.ref(`posts/${postId}/replies/${replyId}`).once("value").then(snap=>{
+    const r = snap.val();
+    if (!r || r.userId !== userId) return alert("You can only delete your own comment.");
+    if (confirm("Delete this comment?")) db.ref(`posts/${postId}/replies/${replyId}`).remove();
+  });
+}
+
+// ---------- Edit / Delete post ----------
+function editPost(postId){
+  db.ref("posts/"+postId).once("value").then(snap=>{
+    const p = snap.val();
+    if (!p || p.userId !== userId) return alert("You can only edit your own post.");
+    // allow editing title and content
+    const newTitle = prompt("Edit title:", p.title);
+    if (newTitle === null) return;
+    const newContent = prompt("Edit content:", p.content);
+    if (newContent === null) return;
+    db.ref(`posts/${postId}/title`).set(newTitle);
+    db.ref(`posts/${postId}/content`).set(newContent);
+  });
+}
+function deletePost(postId){
+  db.ref("posts/"+postId).once("value").then(snap=>{
+    const p = snap.val();
+    if (!p || p.userId !== userId) return alert("You can only delete your own post.");
+    if (confirm("Delete this post?")) db.ref("posts/"+postId).remove();
+  });
+}
+
+// ---------- Likes / Dislikes ----------
+async function toggleLike(postId){
+  const ref = db.ref(`posts/${postId}/likes/${userId}`);
+  const snap = await ref.once("value");
+  if (snap.exists()){
+    // already liked -> remove
+    await ref.remove();
+  } else {
+    // add like, also remove dislike if present
+    await ref.set(true);
+    await db.ref(`posts/${postId}/dislikes/${userId}`).remove();
+  }
+}
+async function toggleDislike(postId){
+  const ref = db.ref(`posts/${postId}/dislikes/${userId}`);
+  const snap = await ref.once("value");
+  if (snap.exists()){
+    await ref.remove();
+  } else {
+    await ref.set(true);
+    await db.ref(`posts/${postId}/likes/${userId}`).remove();
+  }
+}
+// 🔍 search posts
+document.getElementById("searchBox").addEventListener("keydown",e=>{
+  if(e.key==="Enter") searchPosts();
+});
+
+async function searchPosts(){
+  const query=document.getElementById("searchBox").value.toLowerCase().trim();
+  const snap=await db.ref("posts").once("value");
+  const posts=snap.val()||{};
+  const results=[];
+  for(const id in posts){
+    const p=posts[id];
+    if(p.title.toLowerCase().includes(query)||p.content.toLowerCase().includes(query)){
+      results.push({id,title:p.title,content:p.content});
+    }
+  }
+  const out=document.getElementById("searchResults");
+  if(!results.length){out.innerHTML="<p>No results.</p>";return;}
+  out.innerHTML=results.map(r=>`
+    <button onclick="window.location.href='post.html?id=${r.id}'">
+      <div class='title'>${escapeHtml(r.title)}</div>
+      <div class='content'>${escapeHtml(r.content.slice(0,100))}...</div>
+    </button>`).join("");
+}
+// ---------- SEARCH FEATURE (local) ----------
+const searchBox = document.getElementById("searchBox");
+const searchResults = document.getElementById("searchResults");
+
+searchBox.addEventListener("keypress", e => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    const query = searchBox.value.trim().toLowerCase();
+    if (!query) {
+      searchResults.innerHTML = "";
+      return;
+    }
+
+    db.ref("posts").once("value").then(snapshot => {
+      const posts = snapshot.val() || {};
+      const matches = Object.values(posts).filter(p =>
+        (p.title && p.title.toLowerCase().includes(query)) ||
+        (p.content && p.content.toLowerCase().includes(query))
+      );
+
+      if (!matches.length) {
+        searchResults.innerHTML = "<p style='color:#666;'>No results found.</p>";
+        return;
+      }
+
+      searchResults.innerHTML = matches
+        .slice(0, 20)
+        .map(p => `
+          <div style="background:white;padding:10px;margin:8px 0;border-radius:6px;box-shadow:0 0 4px rgba(0,0,0,0.1);cursor:pointer;"
+               onclick="scrollToPost('${p.id}')">
+            <strong>${escapeHtml(p.title)}</strong>
+            <p style="color:#555;margin:5px 0;">${escapeHtml(p.content).substring(0,100)}...</p>
+          </div>
+        `).join("");
+    });
+  }
+});
+
+function scrollToPost(id) {
+  const el = document.getElementById("post-" + id);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    el.style.boxShadow = "0 0 15px 3px #1abc9c";
+    setTimeout(() => el.style.boxShadow = "", 2000);
+  } else {
+    alert("Post not found on this page (might not be loaded yet).");
+  }
+}
+
+
+// ---------- Small helpers ----------
+function escapeHtml(str){ if(!str) return ''; return String(str).replace(/[&<>"']/g, s=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[s]); }
+
+// expose some to global so buttons can call them
+window.toggleReplyBox = toggleReplyBox;
+window.sendReply = sendReply;
+window.showReplies = showReplies;
+window.editReply = editReply;
+window.deleteReply = deleteReply;
+window.editPost = editPost;
+window.deletePost = deletePost;
+window.toggleLike = toggleLike;
+window.toggleDislike = toggleDislike;
+</script>
+</body>
+</html>

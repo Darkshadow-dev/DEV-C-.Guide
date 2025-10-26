@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DEV-C++ History</title>
+  <link rel="icon" type="image/png" href="Website-Guide.png">
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #88eb94;
+      color: #222;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background-color: #659c83;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+
+    /* Nav menu container */
+    nav {
+      background-color: #333;
+      overflow: hidden;
+      transition: max-height 1.5s ease-out;
+      max-height: 0;
+    }
+
+    header:hover + nav,
+    nav:hover {
+      max-height: 200px;
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+
+    nav ul li {
+      display: inline-block;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      padding: 14px 20px;
+      display: block;
+    }
+
+        nav ul li a.active {
+            background-color: #222;
+        }
+
+    nav ul li a:hover {
+      background-color: #111;
+    }
+
+    main {
+      padding: 2em;
+      text-align: left;
+      max-width: 900px;
+      margin: auto;
+    }
+    main h1, main h2, main h3, main p, main pre, main img {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.5s ease-out;
+    }
+    main .visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    /* History entries */
+    .history-entry {
+      background: #fff;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .history-entry:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    }
+    .history-entry h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+      color: #111;
+    }
+    .history-entry strong {
+      color: #2e503c;
+    }
+    .history-entry img {
+      display: block;
+      max-width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    /* Editor placeholder */
+    .editor-placeholder {
+      background: #1e1e1e;
+      color: #dcdcdc;
+      padding: 1rem;
+      border-radius: 12px;
+      font-family: monospace;
+      min-height: 200px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
+      margin-top: 2rem;
+    }
+
+    footer {
+      background-color: #517d67;
+      color: white;
+      text-align: center;
+      padding: 1em;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+
+    /* Hide default scrollbar */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DEV-C++ Development History</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="Main_DEV-C++.html">Home</a></li>
+      <li><a href="Get Started with Coding in Dev-C++.html">Getting Started with Coding in Dev-C++</a></li>
+      <li><a href="More_about_DEV-C++.html">More about DEV-C++</a></li>
+      <li><a href="C and C++ Development.html" class="active">Dev-C++: IDE for C and C++ Development</a></li>
+      <li><a href="community page for Dev-C++.html">Community</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="MORE.html">...</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section>
+      <div class="history-entry">
+        <h2>1998 – <strong>Bloodshed DEV-C++ Released</strong></h2>
+        <p>Created by Colin Laplace under Bloodshed Software. One of the first free C++ IDEs for Windows, bundled with MinGW compiler.</p>
+        <img src="DevC++_logo.png" alt="Bloodshed DEV-C++ Logo">
+      </div>
+
+      <div class="history-entry">
+        <h2>2005 – <strong>Development Stalls</strong></h2>
+        <p>Official updates stopped. Despite this, schools and beginners kept using it widely.</p>
+        <img src="Old-DEVC++.png" alt="Old DEV-C++ Screenshot">
+      </div>
+
+      <div class="history-entry">
+        <h2>2011 – <strong>Orwell's DEV-C++</strong></h2>
+        <p>Johan Mes (Orwell) revived the project, updating compilers, fixing bugs, and modernizing features.</p>
+        <img src="images/orwell-devcpp.png" alt="Orwell's DEV-C++ IDE Screenshot">
+      </div>
+
+      <div class="history-entry">
+        <h2>2015 – 2019 – <strong>Popular with Students</strong></h2>
+        <p>Orwell’s version became the default IDE for many schools and universities.</p>
+        <img src="images/devcpp-students.png" alt="Students using DEV-C++">
+      </div>
+
+      <div class="history-entry">
+        <h2>2020 – <strong>Embarcadero Acquisition</strong></h2>
+        <p>DEV-C++ officially acquired, rebranded, and improved with Windows 10 support and modern compilers.</p>
+        <img src="images/embarcadero-devcpp.png" alt="Embarcadero DEV-C++ Logo">
+      </div>
+
+      <div class="history-entry">
+        <h2>Today – <strong>Still Lightweight</strong></h2>
+        <p>DEV-C++ remains a lightweight choice for learners, even as modern IDEs like Visual Studio and CLion dominate.</p>
+        <img src="images/devcpp-today.png" alt="Modern DEV-C++ Usage">
+      </div>
+    </section>
+
+    <section>
+      <h2>Editor Placeholder</h2>
+      <div class="editor-placeholder">
+        // Future DEV-C++ web editor will appear here...
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Ⓖ 2024-25 Dev-C++ Guide | All rights reserved.</p>
+  </footer>
+<script>
+  // Fade in on scroll
+  const elements = document.querySelectorAll("main h1, main h2, main h3, main p, main pre, main img");
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add("visible");
+      else entry.target.classList.remove("visible");
+    });
+  }, { threshold: 0.3 });
+  elements.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEV-C++</title>
+    <link rel="icon" type="image/png" href="C:\Users\Ahmed\Desktop\Ahmed\Other stuff\Images\Website-Guide.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #88eb94;
+        }
+
+        header {
+            background-color: #659c83;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            transition: max-height 1.5s ease-out;
+            max-height: 0;
+        }
+
+        header:hover + nav,
+        nav:hover {
+            max-height: 200px; /* Adjust based on your menu height */
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: block;
+        }
+
+        nav ul li a.active {
+            background-color: #222;
+        }
+
+        nav ul li a:hover {
+            background-color: #111;
+        }
+
+        main {
+            padding: 2em;
+            text-align: left;
+        }
+        .code-container {
+            margin-bottom: 20px;
+            text-align: left;
+            position: relative;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 1em;
+            display: block;
+            border-left: 4px solid #ccc;
+            white-space: pre;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 16px;
+        }
+
+        .copy-btn {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            padding: 5px 10px;
+            background-color: #659c83;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background-color: #517d67;
+        }
+        footer {
+            background-color: #517d67;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left:0;
+        }
+.image-right img {
+    max-width: 200px; /* Adjust the size as necessary */
+    margin-left: 20px; /* Adds space between text and image */
+}
+.image-right {
+    display: flex;
+    justify-content: space-between; /* Ensures space between text and image */
+    align-items: flex-start; /* Aligns image with the top of the text */
+    margin-bottom: 20px; /* Adds space between sections */
+}
+
+.text {
+    flex: 1; /* Ensures text takes up the remaining space next to the image */
+}
+        .text {
+            max-width: 1200px;
+            margin-right: 20px;
+        }
+
+        /* Hide default scrollbar */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>More about DEV-C++</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="Main_DEV-C++.html">Home</a></li>
+            <li><a href="More_about_DEV-C++.html" class="active">More about DEV-C++</a></li>
+            <li><a href="Getting Started with Coding in Dev-C++.html">Getting Started with Coding in Dev-C++</a></li>
+            <li><a href="C and C++ Development.html">Dev-C++:IDE for C and C++ Development</a></li>
+            <li><a href="community page for Dev-C++.html">Community</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="MORE.html">...</a></li>
+        </ul>
+    </nav>
+
+
+
+
+    <!-- Quiz Section -->
+    <h4>Quiz: Test Your Knowledge</h4>
+    <p>Answer the following questions based on what you've learned:</p>
+    <h4>Interactive Quiz</h4>
+    <form id="quiz-form">
+        <label for="q1">1. What does the <code>cout</code> statement do?</label><br>
+        <input type="radio" id="q1a" name="q1" value="a"> Outputs data to the console<br>
+        <input type="radio" id="q1b" name="q1" value="b"> Inputs data from the user<br>
+        <input type="radio" id="q1c" name="q1" value="c"> Declares a variable<br><br>
+
+        <label for="q2">2. What type of file do you create for a new C++ project in Dev-C++?</label><br>
+        <textarea id="q2" name="q2" rows="3" cols="50"></textarea><br><br>
+
+        <button type="button" onclick="checkQuiz()">Submit</button>
+        <button type="button" onclick="retakeQuiz()">Retake Quiz</button>
+    </form>
+
+    <div id="quiz-result"></div>
+</section>
+<script>
+    function checkQuiz() {
+        let score = 0;
+
+        // Question 1
+        const q1 = document.querySelector('input[name="q1"]:checked');
+        if (q1 && q1.value === "a") score++;
+
+        // Question 2
+        const q2 = document.getElementById("q2").value.trim().toLowerCase();
+        if (q2 === "cpp" || q2 === "c++ project") score++;
+
+        // Display result
+        const result = document.getElementById("quiz-result");
+        result.innerHTML = `You got ${score}/2 correct.`;
+}
+
+    // Function to check the answers and calculate score
+    function checkMediumQuiz() {
+        let score = 0;
+
+        // Prevent form submission behavior
+        event.preventDefault();
+
+        // Question 1
+        const q1m = document.querySelector('input[name="q1m"]:checked');
+        if (q1m && q1m.value === "c") score++;  // Correct answer: Do-While Loop
+
+        // Question 2 (No automatic check, manually evaluated)
+        const q2m = document.getElementById("q2m").value.trim();
+        if (q2m.length > 0) score++;  // User answered something (manual review needed)
+
+        // Question 3
+        const q3m = document.querySelector('input[name="q3m"]:checked');
+        if (q3m && q3m.value === "b") score++;  // Correct answer: ifstream file("filename.txt", ios::in);
+
+        // Display result
+        const resultMedium = document.getElementById("quiz-result-medium");
+        resultMedium.innerHTML = `You got ${score}/3 correct.`;
+    }
+
+// Function to reset the quiz for retaking
+function retakeQuiz() {
+    // Reset the form
+    document.getElementById("quiz-form-medium").reset();
+
+    // Clear the result display
+    document.getElementById("quiz-result-medium").innerHTML = '';
+}
+
+
+// Function to check the answers and calculate score 
+function checkAdvanceQuiz(event) {
+    event.preventDefault();  // Prevent form submission behavior
+
+    let score = 0;
+
+    // Question 1
+    const q1a = document.querySelector('input[name="q1a"]:checked');
+    if (q1a && q1a.value === "a") score++;  // Correct answer: Deep copy duplicates objects, shallow copy duplicates references.
+    
+    // Question 2
+    const q2a = document.querySelector('input[name="q2a"]:checked');
+    if (q2a && q2a.value === "b") score++;  // Correct answer: Virtual functions allow polymorphic behavior
+
+    // Question 3
+    const q3a = document.querySelector('input[name="q3a"]:checked');
+    if (q3a && q3a.value === "a") score++;  // Correct answer: To allocate and deallocate memory dynamically.
+
+    // Display result
+    const resultAdvance = document.getElementById("quiz-result-advance");
+    resultAdvance.innerHTML = `You got ${score}/3 correct.`;
+}
+
+// Function to reset the quiz for retaking
+function retakeQuiz() {
+    // Reset the form
+    document.getElementById("quiz-form-advance").reset();
+
+    // Clear the result display
+    document.getElementById("quiz-result-advance").innerHTML = '';
+
+
+}
+        function retakeQuiz() {
+            const questions = document.querySelectorAll('.question');
+            questions.forEach(question => {
+                const options = question.querySelectorAll('input[type="radio"]');
+                options.forEach(option => {
+                    option.disabled = false;
+                    option.checked = false;
+                    const parentLi = option.parentElement;
+                    parentLi.classList.remove('correct', 'incorrect');
+                    const correctAnswerSpan = parentLi.querySelector('.correct-answer');
+                    if (correctAnswerSpan) {
+                        parentLi.removeChild(correctAnswerSpan);
+                    }
+                });
+            });
+            document.getElementById('quiz-form').reset();
+        }
+    </script>
+<p>	</p>
+<p>	</p>
+<p>a</p>
+<p>a</p>
+    <footer>
+        <p>Ⓖ 2024 Dev-C++ Guide | All rights reserved.</p>
+    </footer>
+</body>
+</html>

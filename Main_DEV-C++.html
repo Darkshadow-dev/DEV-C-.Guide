@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DEV-C++</title>
+  <link rel="icon" type="image/png" href="Website-Guide.png">
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #88eb94;
+      color: #222;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background-color: #659c83;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+
+    /* Nav menu container */
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            transition: max-height 1.5s ease-out;
+            max-height: 0;
+        }
+
+        header:hover + nav,
+        nav:hover {
+            max-height: 200px; /* Adjust based on your menu height */
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: block;
+        }
+
+        nav ul li a.active {
+            background-color: #222;
+        }
+
+        nav ul li a:hover {
+            background-color: #111;
+        }
+
+    main {
+      padding: 2em;
+      text-align: left;
+      max-width: 900px;
+      margin: auto;
+    }
+    main h1, main h2, main h3, main p, main pre, main img {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.5s ease-out;
+    }
+    main .visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      background-color: #517d67;
+      color: white;
+      text-align: center;
+      padding: 1em;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+
+    @media (max-width: 767px) {
+      nav ul li {
+        display: inline-block;
+      }
+    }
+
+    /* Hide default scrollbar */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to DEV-C++ Study Guide</h1>
+  </header>
+
+  <nav id="menu">
+    <ul>
+      <li><a href="Main_DEV-C++.html" class="active">Home</a></li>
+      <li><a href="Get Started with Coding in Dev-C++.html">Getting Started with Coding in Dev-C++</a></li>
+      <li><a href="More_about_DEV-C++.html">More about DEV-C++</a></li>
+      <li><a href="C and C++ Development.html">Dev-C++: IDE for C and C++ Development</a></li>
+      <li><a href="community page for Dev-C++.html">Community</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="MORE.html">...</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="home">
+      <h1>About Us</h1>
+      <p>Welcome to the <strong>Dev-C++ Study Guide</strong> — your companion for learning one of the most popular IDEs for C and C++ development.</p>
+      <p>Whether you’re a beginner writing your very first <code>hello world</code> program, or an advanced developer sharpening your skills, this hub is designed to keep things clear, simple, and fun.</p>
+      <p>Here, you’ll find <em>step-by-step tutorials</em>, <em>troubleshooting tips</em>, and <em>study resources</em> that make programming feel less like guesswork and more like discovery.</p>
+      <p>Think of this site as your workshop: full of guides, insights, and shortcuts that will save you time and boost your confidence while coding in C++.</p>
+      <p>So grab a coffee, sit back, and let’s dive into the exciting world of C++ with Dev-C++!</p>
+  </main>
+
+  <footer>
+    <p>Ⓖ 2024-25 Dev-C++ Guide | All rights reserved.</p>
+  </footer>
+
+<script>
+  // Fade in text on scroll (reload each time)
+  const elements = document.querySelectorAll("main h1, main p");
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible"); // fade in
+      } else {
+        entry.target.classList.remove("visible"); // reset when out of view
+      }
+    });
+  }, { threshold: 0.4 });
+
+  elements.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

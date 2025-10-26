@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dev-C++</title>
+  <link rel="icon" type="image/png" href="Website-Guide.png">
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #88eb94;
+      color: #222;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    header {
+      background-color: #659c83;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+    nav {
+      background-color: #333;
+      overflow: hidden;
+      transition: max-height 1.5s ease-out;
+      max-height: 0;
+    }
+    header:hover + nav,
+    nav:hover {
+      max-height: 200px;
+    }
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+    nav ul li { display: inline-block; }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      padding: 14px 20px;
+      display: block;
+    }
+    nav ul li a.active { background-color: #222; }
+    nav ul li a:hover { background-color: #111; }
+    main {
+      padding: 2em;
+      text-align: left;
+      max-width: 900px;
+      margin: auto;
+    }
+    main h1, main h2, main h3, main p, main pre, main img {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.5s ease-out;
+    }
+    main .visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    img.guide-img {
+      max-width: 100%;
+      margin: 15px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    footer {
+      background-color: #517d67;
+      color: white;
+      text-align: center;
+      padding: 1em;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Getting Started with understanding codes in Dev-C++</h1>
+  </header>
+
+  <!-- Your nav -->
+  <nav>
+    <ul>
+      <li><a href="Main_DEV-C++.html">Home</a></li>
+      <li><a href="Get Started with Coding in Dev-C++.html">Getting Started with Coding in Dev-C++</a></li>
+      <li><a href="More_about_DEV-C++.html" class="active">More about DEV-C++</a></li>
+      <li><a href="C and C++ Development.html">Dev-C++: IDE for C and C++ Development</a></li>
+      <li><a href="community page for Dev-C++.html">Community</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="MORE.html">...</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="intro">
+      <h1>Welcome!</h1>
+      <p>This page is your <strong>step-by-step C++ beginner guide</strong>. You’ll learn what <code>int</code>, <code>bool</code>, <code>#include</code>, loops, and more mean — with examples, explanations, and pictures.</p>
+      <img src="Dev-C++ IDE example.png" alt="Dev-C++ IDE example" class="guide-img">
+    </section>
+
+
+<section class="code-explanation">
+  <h2>🔹 Integers with <code>int</code></h2>
+  <p>
+    <code>int</code> is used for whole numbers (no decimals).  
+    It’s one of the most common variable types in C++.
+  </p>
+  <pre><code class="cpp">
+// Example: using int
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int age = 18;
+    cout &lt;&lt; "My age is: " &lt;&lt; age &lt;&lt; endl;
+    return 0;
+}
+  </code></pre>
+  <p>
+    👉 Here we created a variable <code>age</code> and gave it the value 18.
+  </p>
+  <img src="int example.png" alt="int example" class="tutorial-img">
+</section>
+<section class="code-explanation">
+  <h2>🔹 The <code>#include</code> Directive</h2>
+  <p>
+    <code>#include</code> tells the compiler to include extra functionality.  
+    For example, <code>#include &lt;iostream&gt;</code> gives access to input/output (cin, cout).
+  </p>
+  <pre><code class="cpp">
+#include &lt;iostream&gt; // allows input/output
+using namespace std;
+
+int main() {
+    cout &lt;&lt; "Hello, World!" &lt;&lt; endl;
+    return 0;
+}
+  </code></pre>
+  <p>
+    👉 Without <code>#include &lt;iostream&gt;</code>, <code>cout</code> and <code>cin</code> won’t work.
+  </p>
+  <img src="include example.png" alt="include example" class="tutorial-img">
+</section>
+<section class="code-explanation">
+  <h2>🔹 Loops</h2>
+  <p>
+    Loops repeat code automatically. C++ has 3 main types:  
+    <b>for</b>, <b>while</b>, and <b>do...while</b>.
+  </p>
+  <pre><code class="cpp">
+// Example: for loop
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    for (int i = 1; i &lt;= 5; i++) {
+        cout &lt;&lt; "Loop count: " &lt;&lt; i &lt;&lt; endl;
+    }
+    return 0;
+}
+  </code></pre>
+  <p>
+    👉 This will print numbers from 1 to 5.  
+    <code>for</code> = best when you know how many times to repeat.  
+    <code>while</code> = runs as long as a condition is true.  
+    <code>do...while</code> = runs at least once, then checks the condition.
+  </p>
+  <img src="while_do-while_loops.png" alt="loops illustration" class="tutorial-img">
+</section>
+<section class="code-explanation">
+  <h2>🔹 Boolean Values (<code>bool</code>)</h2>
+  <p>
+    A <code>bool</code> stores only two values: <code>true</code> (1) or <code>false</code> (0).
+  </p>
+  <pre><code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    bool isCodingFun = true;
+    bool isHard = false;
+
+    cout &lt;&lt; "Is coding fun? " &lt;&lt; isCodingFun &lt;&lt; endl;
+    cout &lt;&lt; "Is it hard? " &lt;&lt; isHard &lt;&lt; endl;
+
+    return 0;
+}
+  </code></pre>
+  <p>
+    👉 Output will be <code>1</code> for <code>true</code> and <code>0</code> for <code>false</code>.
+  </p>
+  <img src="bool example.png" alt="bool example" class="tutorial-img">
+</section>
+<section class="code-explanation">
+  <h2>🔹 The <code>break</code> Statement</h2>
+  <p>
+    <code>break</code> is used to stop a loop immediately, even if the condition isn’t finished.
+  </p>
+  <pre><code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    for (int i = 1; i &lt;= 10; i++) {
+        if (i == 5) {
+            break; // exit loop when i == 5
+        }
+        cout &lt;&lt; i &lt;&lt; endl;
+    }
+    return 0;
+}
+  </code></pre>
+  <p>
+    👉 The loop stops at 4 because <code>break</code> ends it when <code>i == 5</code>.
+  </p>
+  <img src="break example.png" alt="break example" class="tutorial-img">
+</section>
+
+<section class="code-explanation">
+  <h2>🔹 The <code>goto</code> Statement</h2>
+  <p>
+    <code>goto</code> jumps directly to a labeled part of the program.  
+    ⚠️ It should be avoided in real projects because it makes code hard to read.
+  </p>
+  <pre><code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int num = 1;
+
+start:
+    cout &lt;&lt; "Number: " &lt;&lt; num &lt;&lt; endl;
+    num++;
+    if (num &lt;= 5) goto start; // jump back to start
+
+    return 0;
+}
+  </code></pre>
+  <p>
+    👉 This prints numbers 1–5 using <code>goto</code>.  
+    Better alternative: use loops instead.
+  </p>
+  <img src="goto example.png" alt="goto example" class="tutorial-img">
+</section>
+<section class="code-explanation">
+  <h2>🔹 Decisions with <code>if / else</code></h2>
+  <p>
+    The <code>if</code> statement checks a condition.  
+    If it’s true → code runs.  
+    Otherwise → <code>else</code> runs.
+  </p>
+  <pre><code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int age = 16;
+
+    if (age &gt;= 18) {
+        cout &lt;&lt; "You are an adult." &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; "You are a minor." &lt;&lt; endl;
+    }
+    return 0;
+}
+  </code></pre>
+  <p>
+    👉 Since <code>age</code> is 16, the program prints <b>You are a minor</b>.
+  </p>
+  <img src="if else example.png" alt="if else example" class="tutorial-img">
+</section>
+<section class="code-explanation">
+  <h2>🔹 Multiple Choices with <code>switch</code></h2>
+  <p>
+    <code>switch</code> checks one variable against many cases.  
+    It’s cleaner than writing many <code>if</code> statements.
+  </p>
+  <pre><code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int day = 3;
+
+    switch(day) {
+        case 1: cout &lt;&lt; "Monday"; break;
+        case 2: cout &lt;&lt; "Tuesday"; break;
+        case 3: cout &lt;&lt; "Wednesday"; break;
+        default: cout &lt;&lt; "Other day";
+    }
+    return 0;
+}
+  </code></pre>
+  <p>
+    👉 Output: <b>Wednesday</b>.  
+    The <code>break</code> prevents running the next case.
+  </p>
+  <img src="switch example.png" alt="switch example" class="tutorial-img">
+</section>
+<section class="code-explanation">
+  <h2>🔹 Arrays (Lists of Values)</h2>
+  <p>
+    An array stores multiple values of the same type in one variable.  
+    Index starts from 0.
+  </p>
+  <pre><code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int numbers[5] = {10, 20, 30, 40, 50};
+
+    cout &lt;&lt; "First number: " &lt;&lt; numbers[0] &lt;&lt; endl;
+    cout &lt;&lt; "Third number: " &lt;&lt; numbers[2] &lt;&lt; endl;
+
+    return 0;
+}
+  </code></pre>
+  <p>
+    👉 Output: <b>10</b> and <b>30</b>.
+  </p>
+  <img src="images/array-example.png" alt="array example" class="tutorial-img">
+</section>
+<section class="code-explanation">
+  <h2>🔹 Functions</h2>
+  <p>
+    Functions let you reuse code by giving it a name and calling it when needed.
+  </p>
+  <pre><code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+void greet() {
+    cout &lt;&lt; "Hello, welcome to C++!" &lt;&lt; endl;
+}
+
+int main() {
+    greet(); // call the function
+    return 0;
+}
+  </code></pre>
+  <p>
+    👉 Output: <b>Hello, welcome to C++!</b>  
+    Functions keep programs clean and organized.
+  </p>
+  <img src="images/function-example.png" alt="function example" class="tutorial-img">
+</section>
+<section class="code-explanation">
+  <h2>🔹 Classes & Objects (OOP Basics)</h2>
+  <p>
+    A <code>class</code> is a blueprint, and <code>objects</code> are made from it.
+  </p>
+  <pre><code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+class Car {
+public:
+    string brand;
+    int year;
+
+    void honk() {
+        cout &lt;&lt; "Beep beep!" &lt;&lt; endl;
+    }
+};
+
+int main() {
+    Car myCar;
+    myCar.brand = "Toyota";
+    myCar.year = 2020;
+
+    cout &lt;&lt; myCar.brand &lt;&lt; " (" &lt;&lt; myCar.year &lt;&lt; ")" &lt;&lt; endl;
+    myCar.honk();
+
+    return 0;
+}
+  </code></pre>
+  <p>
+    👉 Output: <b>Toyota (2020)</b> and <b>Beep beep!</b>.  
+    Classes = objects + data + functions.
+  </p>
+  <img src="images/class-example.png" alt="class example" class="tutorial-img">
+</section>
+<section class="code-explanation">
+  <h2>🔹 Pointers</h2>
+  <p>
+    A pointer stores the <b>memory address</b> of a variable.
+  </p>
+  <pre><code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int num = 42;
+    int* ptr = &num;
+
+    cout &lt;&lt; "Value: " &lt;&lt; num &lt;&lt; endl;
+    cout &lt;&lt; "Address: " &lt;&lt; ptr &lt;&lt; endl;
+    cout &lt;&lt; "Value via pointer: " &lt;&lt; *ptr &lt;&lt; endl;
+
+    return 0;
+}
+  </code></pre>
+  <p>
+    👉 <code>&amp;num</code> gives the memory address.  
+    👉 <code>*ptr</code> gets the value stored there.
+  </p>
+  <img src="images/pointer-example.png" alt="pointer example" class="tutorial-img">
+</section>
+<section class="code-explanation">
+  <h2>🔹 Dynamic Memory</h2>
+  <p>
+    With <code>new</code>, you can create variables or arrays at runtime.  
+    Always free them with <code>delete</code>.
+  </p>
+  <pre><code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int* p = new int; // allocate memory
+    *p = 100;
+    cout &lt;&lt; "Dynamic value: " &lt;&lt; *p &lt;&lt; endl;
+
+    delete p; // free memory
+    return 0;
+}
+  </code></pre>
+  <p>
+    👉 Useful when you don’t know how much data you’ll need in advance.
+  </p>
+  <img src="images/memory-example.png" alt="dynamic memory example" class="tutorial-img">
+</section>
+<section class="code-explanation">
+  <h2>🔹 Inheritance</h2>
+  <p>
+    A class can inherit from another class (reusing code).
+  </p>
+  <pre><code class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+class Animal {
+public:
+    void eat() {
+        cout &lt;&lt; "Eating..." &lt;&lt; endl;
+    }
+};
+
+class Dog : public Animal {
+public:
+    void bark() {
+        cout &lt;&lt; "Woof!" &lt;&lt; endl;
+    }
+};
+
+int main() {
+    Dog myDog;
+    myDog.eat();
+    myDog.bark();
+    return 0;
+}
+  </code></pre>
+  <p>
+    👉 <code>Dog</code> inherits from <code>Animal</code>, so it can both <b>eat</b> and <b>bark</b>.
+  </p>
+  <img src="images/inheritance-example.png" alt="inheritance example" class="tutorial-img">
+</section>
+
+  </main>
+
+  <footer>
+    <p>Ⓖ 2024-25 Dev-C++ Guide | All rights reserved.</p>
+  </footer>
+
+<script>
+  // Fade in on scroll
+  const elements = document.querySelectorAll("main h1, main h2, main h3, main p, main pre, main img");
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add("visible");
+      else entry.target.classList.remove("visible");
+    });
+  }, { threshold: 0.3 });
+  elements.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Starting in DEV-C++</title>
+  <link rel="icon" type="image/png" href="Website-Guide.png">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #88eb94;
+      line-height: 1.7;
+      color: #222;
+    }
+
+    header {
+      background-color: #659c83;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #333;
+      overflow: hidden;
+      transition: max-height 1.5s ease-out;
+      max-height: 0;
+    }
+    header:hover + nav,
+    nav:hover {
+      max-height: 250px;
+    }
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+    nav ul li {
+      display: inline-block;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      padding: 14px 20px;
+      display: block;
+    }
+    nav ul li a.active {
+      background-color: #222;
+    }
+    nav ul li a:hover {
+      background-color: #111;
+    }
+
+    main {
+      padding: 2em;
+      text-align: left;
+      max-width: 900px;
+      margin: auto;
+    }
+    main .visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2, h3 {
+      color: #2a604f;
+    }
+
+    .image-right {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 30px;
+      gap: 20px;
+    }
+    .image-right img {
+      max-width: 35%;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .text {
+      flex: 1;
+    }
+
+    .code-container {
+      margin: 20px 0;
+      position: relative;
+    }
+    code {
+      background-color: #f4f4f4;
+      padding: 1em;
+      display: block;
+      border-left: 4px solid #ccc;
+      border-radius: 6px;
+      font-family: "Courier New", monospace;
+      font-size: 15px;
+      overflow-x: auto;
+    }
+    .copy-btn {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      padding: 5px 10px;
+      background-color: #659c83;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .copy-btn:hover {
+      background-color: #517d67;
+    }
+
+    footer {
+      background-color: #517d67;
+      color: white;
+      text-align: center;
+      padding: 1em;
+    }
+
+    /* Feature Cards */
+    .feature-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .feature-card {
+      flex: 1 1 calc(33.333% - 15px);
+      background: #f9f9f9;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    @media (max-width: 768px) {
+      .image-right {
+        flex-direction: column;
+        text-align: center;
+      }
+      .image-right img {
+        margin: auto;
+      }
+      .feature-card {
+        flex: 1 1 100%;
+      }
+    }
+
+    /* Fade-in scroll animation */
+    section, .image-right, .code-container, .feature-card, p {
+      opacity: 0;
+      transform: translateY(0%);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .visible {
+      opacity: 1 !important;
+      transform: translateY(0%) !important;
+    }
+
+    ::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Starting in DEV-C++</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="Main_DEV-C++.html">Home</a></li>
+      <li><a href="Get Started with Coding in Dev-C++.html" class="active">Getting Started with Coding in Dev-C++</a></li>
+      <li><a href="More_about_DEV-C++.html">More about DEV-C++</a></li>
+      <li><a href="C and C++ Development.html">Dev-C++: IDE for C and C++ Development</a></li>
+      <li><a href="community page for Dev-C++.html">Community</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="MORE.html">...</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section>
+      <div class="image-right">
+        <div class="text">
+          <h2>About Dev-C++</h2>
+          <p>Dev-C++ is an integrated development environment (IDE) for the C and C++ programming languages. It provides a user-friendly interface for writing, compiling, debugging, and executing code.</p>
+          <p>It uses the MinGW compiler and supports syntax highlighting, auto-completion, and project management.</p>
+        </div>
+        <img src="DevC++_logo.png" alt="Dev-C++ Screenshot">
+      </div>
+    </section>
+
+<section>
+  <h3>Windows Compatibility Timeline</h3>
+  <table class="timeline-table">
+    <thead>
+      <tr>
+        <th>Version</th>
+        <th>Release Date</th>
+        <th>Dev-C++ Compatibility</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="fade">
+        <td>Windows XP</td>
+        <td>2001</td>
+        <td>~2003</td>
+      </tr>
+      <tr class="fade">
+        <td>Windows Vista</td>
+        <td>2007</td>
+        <td>2007</td>
+      </tr>
+      <tr class="fade">
+        <td>Windows 7</td>
+        <td>2009</td>
+        <td>2009</td>
+      </tr>
+      <tr class="fade">
+        <td>Windows 10</td>
+        <td>2015</td>
+        <td>2015+</td>
+      </tr>
+      <tr class="fade">
+        <td>Windows 11</td>
+        <td>2021</td>
+        <td>2021+</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<style>
+.timeline-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  text-align: center;
+  background: #f9f9f9;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.timeline-table th {
+  background-color: #2a604f;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+}
+
+.timeline-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  font-size: 15px;
+}
+
+.timeline-table tr:last-child td {
+  border-bottom: none;
+}
+
+</style>
+
+    <section>
+      <div class="image-right">
+        <div class="text">
+          <h2>About MinGW</h2>
+          <p>MinGW (Minimalist GNU for Windows) is a minimalist development environment for native Microsoft Windows applications. It provides a collection of free and open-source tools, including the GCC (GNU Compiler Collection), which can compile C, C++, and other languages.</p>
+        </div>
+        <img src="MinGW.png" alt="MinGW Screenshot">
+      </div>
+    </section>
+
+<!-- ======= Getting Started (replace your old section) ======= -->
+<section id="getting-started">
+  <h3>Getting Started with DEV-C++</h3>
+
+  <div class="button-grid">
+    <button class="big-btn" id="download-btn" aria-haspopup="dialog">Download Dev-C++</button>
+    <button class="big-btn" id="install-btn" aria-haspopup="dialog">Follow the installation guide</button>
+    <button class="big-btn" id="newproject-btn" aria-haspopup="dialog">Create a new project (File &gt; New &gt; Project &gt; C++)</button>
+  </div>
+</section>
+
+<!-- Reusable modal (place once in body, keep after main or at end of body) -->
+<div id="modal" class="modal" aria-hidden="true">
+  <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-close" id="modal-close" aria-label="Close modal">&times;</button>
+    <h4 id="modal-title"></h4>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<!-- ======= Styles (paste into your existing <style> or keep here) ======= -->
+<style>
+/* Buttons grid */
+.button-grid {
+  display: flex;
+  gap: 18px;
+  margin: 18px 0 26px;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+/* Large pill-like buttons (white cards look) */
+.big-btn {
+  flex: 1 1 calc(33.333% - 12px);
+  min-width: 220px;
+  padding: 16px 18px;
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  transition: transform .16s ease, background-color .18s ease, color .18s ease;
+  color: #1f3b33;
+}
+
+/* Hover / active */
+.big-btn:hover { transform: translateY(-8px); background: #659c83; color: #fff; }
+.big-btn:active { transform: translateY(-2px); }
+
+/* Responsive: buttons full width on small screens */
+@media (max-width: 780px) {
+  .big-btn { flex: 1 1 100%; }
+}
+
+/* Modal overlay & box */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none; /* toggled via .show */
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.45);
+  z-index: 9999;
+  padding: 24px;
+}
+
+.modal.show { display: flex; animation: modalFade .18s ease; }
+
+@keyframes modalFade { from { opacity: 0 } to { opacity: 1 } }
+
+.modal-content {
+  position: relative;
+  width: min(860px, 96%);
+  max-height: 82vh;
+  overflow: auto;
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 20px 22px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.25);
+  transform: translateY(6px);
+}
+
+/* Close button */
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: transparent;
+  border: 0;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  color: #6b6b6b;
+}
+
+/* Download option buttons inside modal */
+.download-options {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.option-btn {
+  flex: 1 1 calc(50% - 6px);
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 2px solid #2a604f;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background .12s, color .12s, transform .12s;
+}
+
+.option-btn:hover { background: #2a604f; color: #fff; transform: translateY(-3px); }
+
+/* Steps style */
+.step-list { margin-top: 12px; text-align: left; font-size: 15px; color: #222; }
+.step-list ol { padding-left: 18px; margin: 8px 0 0; }
+.step-note { font-size: 13px; color: #5b5b5b; margin-top: 10px; }
+
+/* Small helper for links inside steps */
+.step-list a { color: #2a604f; text-decoration: underline; }
+
+/* make code tags inside modal look neat */
+.modal-content code { background: #eee; padding: 4px 6px; border-radius: 4px; font-family: "Courier New", monospace; }
+</style>
+
+<!-- ======= Script (paste near end of body; it wires buttons to modal) ======= -->
+<script>
+(function () {
+  const modal = document.getElementById('modal');
+  const modalTitle = document.getElementById('modal-title');
+  const modalBody = document.getElementById('modal-body');
+  const closeBtn = document.getElementById('modal-close');
+
+  function openModal(title, htmlContent) {
+    modalTitle.textContent = title;
+    modalBody.innerHTML = htmlContent;
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden'; // prevent background scroll
+    // attach dynamic listeners if they exist (e.g., download option buttons)
+    attachDynamicListeners();
+  }
+
+  function closeModal() {
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    modalBody.innerHTML = ''; // clean up
+  }
+
+  function attachDynamicListeners() {
+    // Official site
+    const official = document.getElementById('official-btn');
+    if (official) {
+      official.addEventListener('click', () => {
+        window.open('https://www.bloodshed.net/', '_blank');
+        closeModal();
+      });
+    }
+    // SourceForge
+    const sf = document.getElementById('sf-btn');
+    if (sf) {
+      sf.addEventListener('click', () => {
+        window.open('https://sourceforge.net/projects/orwelldevcpp/', '_blank');
+        closeModal();
+      });
+    }
+    // any "copy" or "open" links inside modal
+    const modalLinks = modal.querySelectorAll('[data-open-link]');
+    modalLinks.forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const href = a.getAttribute('data-open-link');
+        window.open(href, '_blank');
+        closeModal();
+      });
+    });
+  }
+
+  // Buttons
+  document.getElementById('download-btn').addEventListener('click', () => {
+    openModal('Download Dev-C++', `
+      <p style="margin:0;">Choose where to download from:</p>
+      <div class="download-options">
+        <button class="option-btn" id="official-btn">Official Site</button>
+        <button class="option-btn" id="sf-btn">SourceForge</button>
+      </div>
+      <p class="step-note">Both buttons open the selected site in a new tab.</p>
+    `);
+  });
+
+  document.getElementById('install-btn').addEventListener('click', () => {
+    openModal('Installation Guide — Step by step', `
+      <div class="step-list">
+        <ol>
+          <li><strong>Download:</strong> Use the <button class="option-btn" data-open-link="https://www.bloodshed.net/">Official Site</button> or <button class="option-btn" data-open-link="https://sourceforge.net/projects/orwelldevcpp/">SourceForge</button>.</li>
+          <li><strong>Run the installer:</strong> Double-click the downloaded <code>.exe</code> file and allow it to run.</li>
+          <li><strong>Installer options:</strong> Choose "Typical" or "Standard" unless you need custom paths.</li>
+          <li><strong>MinGW/GCC:</strong> If prompted to install MinGW or GCC toolchain, accept it — it's required to compile.</li>
+          <li><strong>Finish & launch:</strong> After installation completes, open Dev-C++ from the Start Menu or desktop shortcut.</li>
+        </ol>
+        <p class="step-note">Tip: if Windows warns about the publisher, choose "Run anyway" only if you downloaded from a trusted source.</p>
+      </div>
+    `);
+  });
+
+  document.getElementById('newproject-btn').addEventListener('click', () => {
+    openModal('Create a New Project — Step by step', `
+      <div class="step-list">
+        <ol>
+          <li><strong>Open Dev-C++</strong> (Start Menu or desktop shortcut).</li>
+          <li><strong>Create new project:</strong> Go to <code>File &gt; New &gt; Project...</code>.</li>
+          <li><strong>Choose project type:</strong> Select "Console Application" and choose "C++" when asked.</li>
+          <li><strong>Name & save:</strong> Give your project a name and pick a folder to save it in.</li>
+          <li><strong>Add a source file:</strong> File &gt; New &gt; Source File; paste your code and save it inside the project.</li>
+          <li><strong>Compile & Run:</strong> Use <code>Compile &amp; Run</code> (often F11) to build and execute your program.</li>
+        </ol>
+        <p class="step-note">If compilation fails, check Output/Compiler messages in Dev-C++ for missing headers or syntax errors.</p>
+      </div>
+    `);
+  });
+
+  // close modal on click outside content
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // close button
+  closeBtn.addEventListener('click', closeModal);
+
+  // close on Esc
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('show')) closeModal();
+  });
+})();
+</script>
+
+
+
+    <section>
+      <h3>Example: Basic I/O</h3>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode('example-code')">Copy</button>
+        <pre><code id="example-code">
+// C++ Basic I/O Example
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int age;
+    cout &lt;&lt; "Enter your age: ";
+    cin &gt;&gt; age;
+    cout &lt;&lt; "Your age is: " &lt;&lt; age &lt;&lt; endl;
+    return 0;
+}
+        </code></pre>
+      </div>
+    </section>
+    <section>
+      <div class="image-right">
+        <div class="text">
+    <section>
+<section>
+  <h3>Loops in C++</h3>
+  <table class="timeline-table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="fade">
+        <td>For Loop</td>
+        <td>Runs a block of code a fixed number of times.</td>
+      </tr>
+      <tr class="fade">
+        <td>While Loop</td>
+        <td>Runs while a condition is true.</td>
+      </tr>
+      <tr class="fade">
+        <td>Do-While Loop</td>
+        <td>Runs at least once, then checks condition.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+        </div>
+        <img src="while_do-while_loop.png" alt="while_do-while_loop image.png">
+      </div>
+    </section>
+
+
+      <h4>Example of a For Loop</h4>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode('for-loop-code')">Copy</button>
+        <pre><code id="for-loop-code">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    for (int i = 0; i < 6; i++) {
+        cout << "Loop iteration: " << i << endl;
+    }
+}
+        </code></pre>
+      </div>
+    </section>
+
+    <section>
+<section>
+  <h3>Functions in C++</h3>
+  <table class="timeline-table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="fade">
+        <td>Regular Functions</td>
+        <td>Reusable blocks of code defined once and called when needed.</td>
+      </tr>
+      <tr class="fade">
+        <td>Function Parameters</td>
+        <td>Allow passing values into functions.</td>
+      </tr>
+      <tr class="fade">
+        <td>Return Values</td>
+        <td>Functions can return a value after execution.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+      <h4>Example</h4>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode('function-code')">Copy</button>
+        <pre><code id="function-code">
+// Function Prototype
+int add(int a, int b);
+
+// Function Definition
+int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    int result = add(5, 10);
+    cout << "Result: " << result << endl;
+}
+        </code></pre>
+      </div>
+    </section>
+
+    <section>
+<section>
+  <h3>Arrays in C++</h3>
+  <table class="timeline-table">
+    <thead>
+      <tr>
+        <th>Array Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="fade">
+        <td>1D Array</td>
+        <td>Stores a sequence of elements in a single line.</td>
+      </tr>
+      <tr class="fade">
+        <td>2D Array</td>
+        <td>Represents data in rows and columns (like a matrix).</td>
+      </tr>
+      <tr class="fade">
+        <td>Multi-Dimensional Array</td>
+        <td>Arrays with more than two dimensions.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+      <h4>Example</h4>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode('array-code')">Copy</button>
+        <pre><code id="array-code">
+int numbers[5] = {1, 2, 3, 4, 5};
+for (int i = 0; i < 5; i++) {
+    cout << "Element " << i << ": " << numbers[i] << endl;
+}
+        </code></pre>
+      </div>
+    </section>
+
+    <section>
+<section>
+  <h3>File Input/Output in C++</h3>
+  <table class="timeline-table">
+    <thead>
+      <tr>
+        <th>Operation</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="fade">
+        <td>Reading from Files</td>
+        <td>Use <code>ifstream</code> to read data from files.</td>
+      </tr>
+      <tr class="fade">
+        <td>Writing to Files</td>
+        <td>Use <code>ofstream</code> to write data to files.</td>
+      </tr>
+      <tr class="fade">
+        <td>File Management</td>
+        <td>Open, close, and manipulate files using <code>fstream</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+      <h4>Example</h4>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode('file-io-code')">Copy</button>
+        <pre><code id="file-io-code">
+#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    ofstream outFile("example.txt");
+    outFile << "Hello, file!" << endl;
+    outFile.close();
+
+    ifstream inFile("example.txt");
+    string line;
+    while (getline(inFile, line)) {
+        cout << line << endl;
+    }
+    inFile.close();
+}
+        </code></pre>
+      </div>
+    </section>
+    <section>
+
+</section>
+
+
+      <h4>OOP Example</h4>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode('oop-code')">Copy</button>
+        <pre><code id="oop-code">
+class Car {
+public:
+    string brand;
+    int year;
+
+    void displayInfo() {
+        cout << brand << " - " << year << endl;
+    }
+};
+
+int main() {
+    Car myCar;
+    myCar.brand = "Toyota";
+    myCar.year = 2020;
+    myCar.displayInfo();
+}
+        </code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Ⓖ 2024-25 Dev-C++ Guide | All rights reserved.</p>
+  </footer>
+
+  <script>
+    function copyCode(id) {
+      const codeBlock = document.getElementById(id);
+      const codeText = codeBlock.innerText.trim();
+      navigator.clipboard.writeText(codeText).then(() => {
+        alert("Code copied to clipboard!");
+      });
+    }
+
+    const elements = document.querySelectorAll("section, .image-right, .code-container, .feature-card, p");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        } else {
+          entry.target.classList.remove("visible");
+        }
+      });
+    }, { threshold: 0.1 });
+
+    elements.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

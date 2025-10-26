@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEV-C++ Code Study Guide</title>
+    <link rel="icon" type="image/png" href="C:\Users\Ahmed\Desktop\Ahmed\Other stuff\Images\Website-Guide.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #88eb94;
+        }
+
+        header {
+            background-color: #659c83;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            transition: max-height 1.5s ease-out;
+            max-height: 0;
+        }
+
+        header:hover + nav,
+        nav:hover {
+            max-height: 200px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: block;
+        }
+
+        nav ul li a.active {
+            background-color: #222;
+        }
+
+        nav ul li a:hover {
+            background-color: #111;
+        }
+
+        main {
+            padding: 2em;
+            text-align: left;
+        }
+
+        .code-container {
+            margin-bottom: 20px;
+            text-align: left;
+            position: relative;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 1em;
+            display: block;
+            border-left: 4px solid #ccc;
+            white-space: pre;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 16px;
+        }
+
+        .copy-btn {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            padding: 5px 10px;
+            background-color: #659c83;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background-color: #517d67;
+        }
+
+        footer {
+            background-color: #517d67;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        ul {
+            text-align: left;
+            padding-left: 40px;
+        }
+        /* Hide default scrollbar */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to DEV-C++ Code Study Guide</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="Main_DEV-C++.html">Home</a></li>
+            <li><a href="More_about_DEV-C++.html">More about DEV-C++</a></li>
+            <li><a href="Getting Started with Coding in Dev-C++.html">Getting Started with Coding in Dev-C++</a></li>
+            <li><a href="C and C++ Development.html">Dev-C++:IDE for C and C++ Development</a></li>
+            <li><a href="community page for Dev-C++.html">Community</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="MORE.html">...</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="home">
+            <h2>Basic C++ Code Examples</h2>
+
+            <p>Here's a simple C++ code example for addition:</p>
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyCode('addition-code')">Copy</button>
+                <pre><code id="addition-code">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a, b, sum;
+    cout &lt;&lt; "Enter two numbers: ";
+    cin &gt;&gt; a &gt;&gt; b;
+    sum = a + b;
+    cout &lt;&lt; "Sum = " &lt;&lt; sum &lt;&lt; endl;
+    return 0;
+}
+                </code></pre>
+            </div>
+
+            <p>Here's a simple C++ code example for multiplication:</p>
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyCode('multiplication-code')">Copy</button>
+                <pre><code id="multiplication-code">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a, b, product;
+    cout &lt;&lt; "Enter two numbers: ";
+    cin &gt;&gt; a &gt;&gt; b;
+    product = a * b;
+    cout &lt;&lt; "Product = " &lt;&lt; product &lt;&lt; endl;
+    return 0;
+}
+                </code></pre>
+            </div>
+
+            <p>Here's a more complex example that calculates the square root of a number:</p>
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyCode('sqrt-code')">Copy</button>
+                <pre><code id="sqrt-code">
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+using namespace std;
+
+int main() {
+    double number = 9.0;
+    double result = sqrt(number);
+    cout &lt;&lt; "Square root of " &lt;&lt; number &lt;&lt; " is " &lt;&lt; result &lt;&lt; endl;
+    return 0;
+}
+                </code></pre>
+            </div>
+
+            <p>Loop examples:</p>
+            <p>For Loop:</p>
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyCode('ForLoop-code')">Copy</button>
+                <pre><code id="ForLoop-code">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    for (int i = 0; i < 6; i++) {
+        cout &lt;&lt; "Loop iteration: " &lt;&lt; i &lt;&lt; endl;
+    }
+    return 0;
+}
+                </code></pre>
+            </div>
+
+            <p>While/Do-While Loop:</p>
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyCode('ForWhile-code')">Copy</button>
+                <pre><code id="ForWhile-code">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int i = 0;
+    do {
+        cout &lt;&lt; "Loop iteration: " &lt;&lt; i &lt;&lt; endl;
+        i++;
+    } while (i < 6);
+    return 0;
+}
+                </code></pre>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Ⓖ 2024 Dev-C++ Guide | All rights reserved.</p>
+    </footer>
+
+    <script>
+        function copyCode(codeId) {
+            const codeElement = document.getElementById(codeId);
+            const codeText = codeElement.innerText.trim();
+
+            navigator.clipboard.writeText(codeText).then(() => {
+                alert('Code copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
